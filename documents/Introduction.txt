@@ -1,0 +1,5 @@
+“Hello, I’m Yug Patel. I’ve been working at Infodesk as an AI/ML Engineer for the past 2.7 years. In this role, I’ve gained hands‑on experience in building and maintaining scalable AI products and features using tools like LangChain, LlamaIndex, and CrewAI. I’ve worked extensively with a range of model families, including LLaMA, Meta, Gemini, and Anthropic, focusing on implementing and fine‑tuning them for different use cases.
+
+On the academic side, I earned my B.Tech. in Information Technology from SVIT Vasad, and later pursued a Master’s degree in Computer Science with a specialization in AI. During my Master’s program, I graduated as the gold medalist and received an academic excellence award. I’ve also published two research papers focusing on Retrieval‑Augmented Generation (RAG), which is one of the latest trends in AI.
+
+I’m passionate about applying AI to solve real‑world problems and am looking forward to leveraging my experience and academic background to contribute to impactful projects.” 
