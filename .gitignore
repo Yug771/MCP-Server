@@ -29,6 +29,8 @@ Environment/
 Environment
 .env
 
+# Streamlit secrets
+.streamlit/secrets.toml
 
 # IDE / Editor
 .idea/

@@ -21,14 +21,14 @@ def get_doc(filename: str):
     path = os.path.join(DOCS_DIR, filename)
     if not os.path.exists(path):
         return f"Error: {filename} not found."
-    with open(path) as f:
+    with open(path, encoding='utf-8') as f:
         return f.read()
 
 # TOOL: Append text to a document
 @mcp.tool()
 def append_to_doc(filename: str, content: str) -> str:
     path = os.path.join(DOCS_DIR, filename)
-    with open(path, "a") as f:
+    with open(path, "a", encoding='utf-8') as f:
         f.write(content)
     return f"✅ Appended to {filename}."
 
@@ -39,7 +39,7 @@ def search_in_doc(filename: str, keyword: str) -> list[str]:
     if not os.path.exists(path):
         return [f"Error: {filename} not found."]
     results = []
-    with open(path) as f:
+    with open(path, encoding='utf-8') as f:
         for i, line in enumerate(f, 1):
             if keyword in line:
                 results.append(f"{i}: {line.strip()}")

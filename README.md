@@ -10,6 +10,7 @@ MCP-Server-And-Client/
 │   └── notes.txt         # An example document
 ├── MCP-client.py         # Example script to interact with the server
 ├── MCP-server.py         # The backend server logic
+├── streamlit_app.py      # Web interface for the DocAssistant
 ├── requirements.txt      # Python dependencies
 └── README.md             # This file
 ```
@@ -52,6 +53,8 @@ pip install -r requirements.txt
 
 ### 3. Running the Application
 
+#### Option 1: Command Line Interface
+
 The client and server run in a single, coordinated process. To start the application, simply run the client script from your terminal:
 
 ```bash
@@ -59,6 +62,24 @@ python MCP-client.py
 ```
 
 The client will automatically start the server as a subprocess and begin interacting with it. You will see output from both the client and server in your terminal, demonstrating the various features of the `DocAssistant`.
+
+#### Option 2: Web Interface (Streamlit)
+
+For a more user-friendly experience, you can use the Streamlit web interface:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+This will open a beautiful web application in your browser where you can:
+- Connect/disconnect to the MCP server
+- List all available documents
+- View document contents with syntax highlighting
+- Append new content to documents
+- Search for keywords within documents
+- Download documents
+
+The Streamlit interface provides an intuitive way to interact with all the DocAssistant features through a modern web UI.
 
 ## How It Works
 
