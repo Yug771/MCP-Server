@@ -10,8 +10,9 @@ MCP-Server-And-Client/
 │   └── notes.txt         # An example document
 ├── MCP-client.py         # Example script to interact with the server
 ├── MCP-server.py         # The backend server logic
-├── streamlit_app.py      # Web interface for the DocAssistant
-├── requirements.txt      # Python dependencies
+├── app.py                # Cloud-ready Streamlit app (no MCP dependencies)
+├── requirements.txt      # Python dependencies for cloud deployment
+├── requirements_local.txt # Full dependencies for local development
 └── README.md             # This file
 ```
 
@@ -45,15 +46,22 @@ The `DocAssistant` server exposes several `fastmcp` endpoints:
 
 ### 2. Install Dependencies
 
-Install the required Python packages from the `requirements.txt` file:
-
+For cloud deployment (Streamlit Cloud):
 ```bash
 pip install -r requirements.txt
 ```
 
+For local development with full MCP functionality:
+```bash
+# First, save the original requirements if needed
+cp requirements.txt requirements_local.txt
+# Then install from the local requirements
+pip install fastmcp mcp
+```
+
 ### 3. Running the Application
 
-#### Option 1: Command Line Interface
+#### Option 1: Command Line Interface (Local Only)
 
 The client and server run in a single, coordinated process. To start the application, simply run the client script from your terminal:
 
@@ -63,26 +71,38 @@ python MCP-client.py
 
 The client will automatically start the server as a subprocess and begin interacting with it. You will see output from both the client and server in your terminal, demonstrating the various features of the `DocAssistant`.
 
-#### Option 2: Web Interface (Streamlit)
+#### Option 2: Web Interface (Works on Cloud)
 
 For a more user-friendly experience, you can use the Streamlit web interface:
 
 ```bash
-streamlit run streamlit_app.py
+streamlit run app.py
 ```
 
 This will open a beautiful web application in your browser where you can:
-- Connect/disconnect to the MCP server
 - List all available documents
 - View document contents with syntax highlighting
 - Append new content to documents
 - Search for keywords within documents
 - Download documents
 
-The Streamlit interface provides an intuitive way to interact with all the DocAssistant features through a modern web UI.
+The `app.py` version works on Streamlit Cloud as it doesn't require MCP subprocess communication.
+
+## Cloud Deployment
+
+### Deploying to Streamlit Cloud
+
+1. Push your code to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your GitHub repository
+4. Select `app.py` as the main file
+5. Deploy!
+
+**Note**: The cloud version (`app.py`) implements document operations directly without MCP client-server architecture, making it compatible with cloud environments.
 
 ## How It Works
 
+### Local Version (MCP-client.py + MCP-server.py)
 The `MCP-client.py` script initializes a `StdioTransport` to manage communication with the `MCP-server.py` script. It then uses the `fastmcp` client to:
 
 1.  **Ping the server** to ensure it's running.
@@ -90,4 +110,7 @@ The `MCP-client.py` script initializes a `StdioTransport` to manage communicatio
 3.  **Call the `append_to_doc` tool** to add a new line to `documents/notes.txt`.
 4.  **Call the `search_in_doc` tool** to find occurrences of the word "Hello".
 5.  **Read the entire content** of `documents/notes.txt` using its resource URI.
-6.  **Generate a prompt message** using the `append_prompt` template. 
+6.  **Generate a prompt message** using the `append_prompt` template.
+
+### Cloud Version (app.py)
+The cloud version directly implements file operations without requiring a separate server process, making it suitable for deployment on platforms like Streamlit Cloud where subprocess communication is restricted. 
